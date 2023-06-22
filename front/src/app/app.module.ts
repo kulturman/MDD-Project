@@ -9,6 +9,8 @@ import {MatButtonModule} from "@angular/material/button";
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {NgOptimizedImage} from "@angular/common";
+import {MatIconModule} from "@angular/material/icon";
+import { NavigationArrowComponent } from './components/navigation-arrow/navigation-arrow.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import {NgOptimizedImage} from "@angular/common";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    NavigationArrowComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatIconModule,
     NgOptimizedImage
   ],
   providers: [],

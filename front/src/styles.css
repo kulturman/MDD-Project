@@ -1,10 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
-
+.container {
+  width: 100%;
+  margin: auto;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif; }
+
 .simple-button {
   border: 1px solid black !important;
+}
+
+.container {
+  padding: 30px 30px;
+  cursor: pointer;
+}
+
+.form {
+  margin: auto;
+  max-width: 500px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group__label {
+  font-size: .8rem;
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 1px solid gray;
+  height: 35px;
+}
+
+.center {
+  text-align: center;
+}
+
+.logo-auth {
+  width: 230px;
 }
