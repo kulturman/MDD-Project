@@ -11,6 +11,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import {NgOptimizedImage} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
 import { NavigationArrowComponent } from './components/navigation-arrow/navigation-arrow.component';
+import { MainMenuComponent } from './components/main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NavigationArrowComponent } from './components/navigation-arrow/navigati
     LoginComponent,
     RegisterComponent,
     NavigationArrowComponent,
+    MainMenuComponent,
   ],
   imports: [
     BrowserModule,

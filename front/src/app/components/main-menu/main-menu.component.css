@@ -1,0 +1,14 @@
+.menu {
+  display: none;
+  border-bottom: 1px solid;
+}
+
+.menu__logo .logo {
+  width: 150px;
+}
+
+@media (min-width: 670px) {
+  .menu.main__menu {
+    display: block;
+  }
+}

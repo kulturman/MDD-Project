@@ -23,6 +23,7 @@ body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif; }
 .form {
   margin: auto;
   max-width: 500px;
+  padding: 0 30px;
 }
 
 .form-group {
@@ -48,3 +49,14 @@ body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif; }
 .logo-auth {
   width: 230px;
 }
+
+@media (min-width: 670px) {
+  .mobile-logo {
+    display: none;
+  }
+
+  .menu.main__menu {
+    display: block;
+  }
+}
+
