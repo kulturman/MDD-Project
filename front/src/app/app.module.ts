@@ -12,6 +12,8 @@ import {NgOptimizedImage} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
 import { NavigationArrowComponent } from './components/navigation-arrow/navigation-arrow.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { FormControlErrorComponent } from './components/form-control-error/form-control-error.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
     RegisterComponent,
     NavigationArrowComponent,
     MainMenuComponent,
+    FormControlErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

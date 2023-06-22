@@ -1,0 +1,3 @@
+<strong class="form-control-error" *ngIf="form.get(name)?.invalid && (form.get(name)?.dirty || form.get(name)?.touched)">
+  {{ getMessage(form.get(name)?.errors) }}
+</strong>

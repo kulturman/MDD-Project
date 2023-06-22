@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -6,6 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  formGroup: FormGroup;
 
-  protected readonly console = console;
+  constructor(private formBuilder: FormBuilder) {
+    this.formGroup = formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    })
+  }
+
+  onSubmit() {
+  }
 }
