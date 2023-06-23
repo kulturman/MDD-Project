@@ -1,0 +1,16 @@
+.article {
+  background: #F5F5F5;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.article__date-author {
+  display: flex;
+  gap: 5rem;
+  margin-bottom: 1rem;
+}
+
+.article__title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}

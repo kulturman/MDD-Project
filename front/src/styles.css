@@ -9,7 +9,7 @@
   margin: auto;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif !important; }
 
 .simple-button {
   border: 1px solid black !important;
@@ -50,7 +50,17 @@ body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif; }
   width: 230px;
 }
 
-@media (min-width: 670px) {
+@media (min-width: 768px) {
+  .mobile-logo {
+    display: none;
+  }
+
+  .menu.main__menu {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
   .mobile-logo {
     display: none;
   }

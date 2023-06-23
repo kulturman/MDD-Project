@@ -14,6 +14,8 @@ import { NavigationArrowComponent } from './components/navigation-arrow/navigati
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { FormControlErrorComponent } from './components/form-control-error/form-control-error.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FormControlErrorComponent } from './components/form-control-error/form-
     NavigationArrowComponent,
     MainMenuComponent,
     FormControlErrorComponent,
+    ArticlesComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,

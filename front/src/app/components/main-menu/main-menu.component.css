@@ -1,5 +1,4 @@
 .menu {
-  display: none;
   border-bottom: 1px solid;
 }
 
@@ -7,7 +6,11 @@
   width: 150px;
 }
 
-@media (min-width: 670px) {
+.menu__nav {
+  display: none;
+}
+
+@media (min-width: 770px) {
   .menu.main__menu {
     display: flex;
     align-items: center;

@@ -1,0 +1,19 @@
+<app-main-menu></app-main-menu>
+<div class="container">
+  <div class="call-to-action">
+    <div class="call-to-action__button">
+      <button (click)="navigate()" mat-raised-button color="primary">Créer un article</button>
+    </div>
+    <div class="call-to-action__sort">
+      <span>Trier par</span>
+      <mat-icon aria-hidden="false" aria-label="Sort icon" fontIcon="south"></mat-icon>
+    </div>
+  </div>
+
+  <section class="articles">
+    <app-article class="article"></app-article>
+    <app-article class="article"></app-article>
+    <app-article class="article"></app-article>
+    <app-article class="article"></app-article>
+  </section>
+</div>
