@@ -16,6 +16,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { FormControlErrorComponent } from './components/form-control-error/form-control-error.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
+import { ThemesComponent } from './pages/themes/themes.component';
+import { ThemeComponent } from './components/theme/theme.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ArticleComponent } from './components/article/article.component';
     FormControlErrorComponent,
     ArticlesComponent,
     ArticleComponent,
+    ThemesComponent,
+    ThemeComponent,
   ],
   imports: [
     BrowserModule,
