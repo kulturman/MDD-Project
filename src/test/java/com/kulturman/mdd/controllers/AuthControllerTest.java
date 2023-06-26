@@ -36,7 +36,6 @@ class AuthControllerTest {
 
     @Test
     void registersSuccessfully() throws Exception {
-        System.out.println("U:"+userService.findByEmail("itachi@konoha.com"));
         mockMvc.perform(
             post("/api/auth/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -53,7 +52,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void failsToRegisterIfEmailIsUsed() throws Exception {System.out.println("U1:"+userService.findByEmail("itachi@konoha.com"));
+    void failsToRegisterIfEmailIsUsed() throws Exception {
         mockMvc.perform(
             post("/api/auth/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -65,7 +64,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void failsToRegisterIfUsernameIsUsed() throws Exception {System.out.println("U2:"+userService.findByEmail("itachi@konoha.com"));
+    void failsToRegisterIfUsernameIsUsed() throws Exception {
         mockMvc.perform(
             post("/api/auth/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -77,7 +76,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void authenticateSuccessfully() throws Exception {System.out.println("U3:"+userService.findByEmail("itachi@konoha.com"));
+    void authenticateSuccessfully() throws Exception {
         mockMvc.perform(post("/api/auth/login")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(new LoginRequest("itachi@konoha.com", "Aa123456@")))
