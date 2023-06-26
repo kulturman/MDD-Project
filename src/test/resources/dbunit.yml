@@ -1,0 +1,9 @@
+cacheConnection: true
+cacheTableNames: true
+leakHunter: true
+caseInsensitiveStrategy: LOWERCASE
+raiseExceptionOnCleanUp: false
+alwaysCleanBefore: false
+alwaysCleanAfter: true
+properties:
+  qualifiedTableNames: true

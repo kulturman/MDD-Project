@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  database:
+    image: mysql:5.7-debian
+    container_name: mdd-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=mdd
+      - MYSQL_USER=mdd
+      - MYSQL_PASSWORD=mdd
+      - MYSQL_DATABASE=mdd
+    volumes:
+      - mdd-mysql-data:/var/lib/mysql
+    ports:
+      - "13031:3306"
+volumes:
+  mdd-mysql-data:

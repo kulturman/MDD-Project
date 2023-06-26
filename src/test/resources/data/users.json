@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "kakashi@konoha.com",
+      "password": "$2a$10$UvyBmaz5lJUiWCfxcUg.KOB2TICV7mJBTQ8y81Hz7MTDEzAW4wHMe",
+      "username": "kakashi"
+    },
+    {
+      "id": 2,
+      "email": "itachi@konoha.com",
+      "password": "$2a$10$UvyBmaz5lJUiWCfxcUg.KOB2TICV7mJBTQ8y81Hz7MTDEzAW4wHMe",
+      "username": "itachi"
+    }
+  ]
+}
