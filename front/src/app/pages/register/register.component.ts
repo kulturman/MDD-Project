@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
+import {SwalComponent} from "@sweetalert2/ngx-sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -7,10 +10,12 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  usernameFormControl = new FormControl('');
   formGroup!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  @ViewChild('successDialog')
+  public readonly successDialog!: SwalComponent;
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private readonly router: Router) {}
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -24,6 +29,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.authService.register(this.formGroup.value).subscribe(() => {
+      this.successDialog.fire();
+      this.router.navigate(['/login']);
+    });
   }
 
 }

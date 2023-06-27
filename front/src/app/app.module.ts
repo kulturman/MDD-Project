@@ -18,6 +18,8 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
 import { ThemesComponent } from './pages/themes/themes.component';
 import { ThemeComponent } from './components/theme/theme.component';
+import {HttpClientModule} from "@angular/common/http";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { ThemeComponent } from './components/theme/theme.component';
     MatButtonModule,
     MatIconModule,
     NgOptimizedImage,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

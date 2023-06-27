@@ -31,5 +31,11 @@
     <div class="center">
       <button [disabled]="formGroup.invalid" type="submit" mat-raised-button color="primary">S'inscrire</button>
     </div>
+    <swal
+      #successDialog
+      text="Inscription effectuée avec succès"
+      icon="success"
+      >
+    </swal>
   </form>
 </div>

@@ -8,9 +8,9 @@
 
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form">
     <div class="form-group">
-      <label for="username" class="form-group__label">Email ou nom d'utilisateur</label>
-      <input id="username" type="text" class="form-control" formControlName="username">
-      <app-form-control-error [form]="formGroup" [name]="'username'"></app-form-control-error>
+      <label for="email" class="form-group__label">Email ou nom d'utilisateur</label>
+      <input id="email" type="text" class="form-control" formControlName="email">
+      <app-form-control-error [form]="formGroup" [name]="'email'"></app-form-control-error>
     </div>
 
     <div class="form-group">
@@ -20,7 +20,14 @@
     </div>
 
     <div class="center">
-      <button mat-raised-button color="primary">Se connecter</button>
+      <button [disabled]="formGroup.invalid" mat-raised-button color="primary">Se connecter</button>
     </div>
+
+    <swal
+      #errorDialog
+      text="Nom d'utilisateur/email ou mot de passe incorrect"
+      icon="error"
+    >
+    </swal>
   </form>
 </div>
