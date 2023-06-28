@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @DBRider
 @AutoConfigureMockMvc
-@DBUnit(caseSensitiveTableNames = true, alwaysCleanAfter = true)
+@DBUnit(caseSensitiveTableNames = true)
 @DataSet(value = "data/users.json")
 class AuthControllerTest {
     @Autowired
@@ -60,7 +60,7 @@ class AuthControllerTest {
                     "kakashi@konoha.com", "kulturman", "Ty1970@89"
                     )
                 ))
-        ).andExpect(status().is4xxClientError());
+        ).andExpect(status().isBadRequest());
     }
 
     @Test
@@ -72,7 +72,7 @@ class AuthControllerTest {
                     "test@gmail.com", "itachi", "Ty1970@89"
                     )
                 ))
-        ).andExpect(status().is4xxClientError());
+        ).andExpect(status().isBadRequest());
     }
 
     @Test
@@ -82,5 +82,13 @@ class AuthControllerTest {
             .content(objectMapper.writeValueAsString(new LoginRequest("itachi@konoha.com", "Aa123456@")))
         ).andExpect(status().isOk())
             .andExpect(jsonPath("$.token").isString());
+    }
+
+    @Test
+    void authenticationFailsIfEmailOrPasswordIsWrong() throws Exception {
+        mockMvc.perform(post("/api/auth/login")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(new LoginRequest("itachi@konoha.com2", "Aa123456@")))
+        ).andExpect(status().isForbidden());
     }
 }

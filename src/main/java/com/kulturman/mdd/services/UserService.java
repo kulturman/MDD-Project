@@ -2,7 +2,6 @@ package com.kulturman.mdd.services;
 
 import com.kulturman.mdd.dtos.requests.RegisterRequest;
 import com.kulturman.mdd.entities.User;
-import com.kulturman.mdd.exceptions.BadRequestException;
 import com.kulturman.mdd.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -29,7 +28,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         var user = userRepository.findByEmail(email);
-        System.out.println("USER" + user);
+
         if (user.isEmpty()) {
             throw new UsernameNotFoundException(String.format("No user with email %s", email));
         }
