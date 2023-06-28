@@ -3,7 +3,7 @@
     <img class="logo logo-auth" src="/assets/images/logo.png" alt="Logo here" />
   </div>
   <nav class="menu__nav" *ngIf="isAuthenticated">
-    <ul>
+    <ul class="menu__nave__list">
       <li>
         <a routerLink="/articles">Articles</a>
       </li>
@@ -11,8 +11,18 @@
         <a routerLink="/themes" class="active">Thèmes</a>
       </li>
     </ul>
-    <div class="menu__user-icon">
+    <div class="menu__user-icon" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
       <mat-icon class="custom-account-icon" aria-hidden="false" aria-label="User account" fontIcon="account_circle"></mat-icon>
+      <div class="menu__user-icon__container" *ngIf="showDropdown">
+        <ul>
+          <li>
+            <a routerLink="/profil">Profil</a>
+          </li>
+          <li>
+            <a href="#" (click)="logout()">Déconnexion</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </div>

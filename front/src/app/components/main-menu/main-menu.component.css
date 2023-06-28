@@ -8,6 +8,25 @@
 
 .menu__nav {
   display: none;
+  position: relative;
+}
+
+.menu__user-icon__container {
+  position: absolute;
+  right: 40px;
+  top: 45px;
+  background: #6C5CCF;
+}
+
+.menu__user-icon__container ul {
+  list-style: none;
+  line-height: 2;
+  padding: 0 3rem;
+}
+
+.menu__user-icon__container ul a {
+  text-decoration: none;
+  color: white;
 }
 
 @media (min-width: 770px) {
@@ -17,19 +36,19 @@
     justify-content: space-between;
   }
 
-  .menu__nav ul {
+  .menu__nave__list {
     list-style: none;
     display: flex;
     gap: 20px;
   }
 
-  .menu__nav ul a {
+  .menu__nave__list a {
     color: black;
     text-decoration: none;
     font-size: 1.1rem;
   }
 
-  .menu__nav ul .active {
+  .menu__nave__list .active {
     color: #6C5CCF;
   }
 

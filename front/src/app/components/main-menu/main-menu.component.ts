@@ -8,11 +8,20 @@ import {AuthService} from "../../services/auth.service";
 })
 export class MainMenuComponent implements OnInit {
   isAuthenticated: boolean = false;
+  showDropdown = false;
 
   constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.getAuthToken() !== null;
+  }
+
+  toggleDropdown(isVisible: boolean) {
+    this.showDropdown = isVisible;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

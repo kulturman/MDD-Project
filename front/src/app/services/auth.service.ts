@@ -34,6 +34,12 @@ export class AuthService {
   getAuthToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
   }
+
+  logout() {
+    this.authState.isAuthenticated = false;
+    this.authState.token = null;
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
 }
 
 interface AuthState {
