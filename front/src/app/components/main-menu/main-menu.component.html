@@ -2,7 +2,7 @@
   <div class="menu__logo">
     <img class="logo logo-auth" src="/assets/images/logo.png" alt="Logo here" />
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" *ngIf="isAuthenticated">
     <ul>
       <li>
         <a routerLink="/articles">Articles</a>

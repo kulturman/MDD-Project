@@ -27,8 +27,12 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.authService.login(this.formGroup.value).subscribe(result => {
-      this.router.navigate(["/articles"]);
-    }, () => { this.errorDialog.fire() });
+    this.authService.login(this.formGroup.value).subscribe({
+      next: (data) => {
+        this.authService.registerAuthState(data.token);
+        this.router.navigate(["/articles"]);
+      },
+      error: () => this.errorDialog.fire().then()
+    })
   }
 }
