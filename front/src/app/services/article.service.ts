@@ -9,7 +9,9 @@ import {Observable} from "rxjs";
 export class ArticleService {
   constructor(private readonly http: HttpClient) { }
 
-  getAll(): Observable<Article[]> {
-    return this.http.get<Article[]>('/api/articles');
+  getAll(sortOrder: SortOrder): Observable<Article[]> {
+    return this.http.get<Article[]>(`/api/articles?sort=${sortOrder}`);
   }
 }
+
+export type SortOrder = 'DESC' | 'ASC';

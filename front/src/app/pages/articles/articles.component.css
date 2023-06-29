@@ -24,6 +24,7 @@
 .call-to-action__sort {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

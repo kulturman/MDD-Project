@@ -4,9 +4,10 @@
     <div class="call-to-action__button">
       <button (click)="navigate()" mat-raised-button color="primary">Créer un article</button>
     </div>
-    <div class="call-to-action__sort">
+    <div class="call-to-action__sort" (click)="sort()">
       <span>Trier par</span>
-      <mat-icon aria-hidden="false" aria-label="Sort icon" fontIcon="south"></mat-icon>
+      <mat-icon *ngIf="sortOrder=='DESC'" aria-hidden="false" aria-label="Sort icon" fontIcon="south"></mat-icon>
+      <mat-icon *ngIf="sortOrder=='ASC'" aria-hidden="false" aria-label="Sort icon" fontIcon="north"></mat-icon>
     </div>
   </div>
 

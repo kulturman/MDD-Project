@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {ArticleService} from "../../services/article.service";
+import {ArticleService, SortOrder} from "../../services/article.service";
 import {Article} from "../../models/article";
 
 @Component({
@@ -9,21 +9,34 @@ import {Article} from "../../models/article";
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  isLoading = true;
+  isLoading = false;
   articles: Article[] = [];
+  sortOrder: SortOrder = 'ASC';
 
   constructor(private readonly router: Router, private readonly articleService: ArticleService) {
   }
+
   async navigate() {
     await this.router.navigate(['/article']);
   }
 
   ngOnInit(): void {
-    this.articleService.getAll().subscribe({
+    this.fetchArticles();
+  }
+
+  private fetchArticles() {
+    this.isLoading = true;
+
+    this.articleService.getAll(this.sortOrder).subscribe({
       next: articles => {
         this.isLoading = false;
         this.articles = articles
       }
-    })
+    });
+  }
+
+  sort() {
+    this.sortOrder = this.sortOrder == 'DESC' ? 'ASC': 'DESC';
+    this.fetchArticles();
   }
 }
