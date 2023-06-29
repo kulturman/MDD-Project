@@ -18,8 +18,10 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
 import { ThemesComponent } from './pages/themes/themes.component';
 import { ThemeComponent } from './components/theme/theme.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {AuthInterceptor} from "./auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -41,12 +43,19 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     NgOptimizedImage,
     ReactiveFormsModule,
     HttpClientModule,
     SweetAlert2Module.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

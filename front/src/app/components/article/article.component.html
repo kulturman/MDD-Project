@@ -1,12 +1,12 @@
 <div class="article">
-  <p class="article__title">{{title}}</p>
+  <p class="article__title">{{article.title}}</p>
 
   <div class="article__date-author">
-    <span class="">{{date}}</span>
-    <span class="">{{author}}</span>
+    <span class="">{{article.createdAt | date: 'd/M/Y HH:mm'}}</span>
+    <span class="">{{article.author}}</span>
   </div>
 
   <p class="article__content">
-    {{content}}
+    {{article.content}}
   </p>
 </div>

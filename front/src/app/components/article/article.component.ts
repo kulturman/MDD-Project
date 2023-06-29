@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Article} from "../../models/article";
 
 @Component({
   selector: 'app-article',
@@ -6,8 +7,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent {
-  @Input() title!: string;
-  @Input() date!: string;
-  @Input() author!: string;
-  @Input() content!: string;
+  @Input() article!: Article;
 }
