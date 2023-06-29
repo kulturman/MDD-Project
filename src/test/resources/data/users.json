@@ -12,5 +12,21 @@
       "password": "$2a$10$UvyBmaz5lJUiWCfxcUg.KOB2TICV7mJBTQ8y81Hz7MTDEzAW4wHMe",
       "username": "itachi"
     }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Article 1",
+      "content": "Article 1 content",
+      "created_at": "groovy:new Date(1687996800000)",
+      "author_id": 1
+    },
+    {
+      "id": 2,
+      "title": "Article 2",
+      "content": "Article 2 content",
+      "created_at": "groovy:new Date(1688000400000)",
+      "author_id": 2
+    }
   ]
 }

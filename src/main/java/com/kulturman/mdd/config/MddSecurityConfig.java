@@ -32,7 +32,7 @@ public class MddSecurityConfig  {
         http.csrf()
             .disable()
             .authorizeRequests()
-            .antMatchers("/images/**", "/**/login","/**/register", "/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs")
+            .antMatchers("/images/**", "/**/login","/**/register", "/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs", "/h2/**")
             .permitAll()
             .anyRequest()
             .authenticated()

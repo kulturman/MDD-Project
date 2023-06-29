@@ -13,8 +13,12 @@ public class JwtService {
     private String jwtSecret;
 
     public String generateToken(Authentication authentication) {
+        return generateToken(authentication.getName());
+    }
+
+    public String generateToken(String email) {
         return Jwts.builder()
-            .setSubject(authentication.getName())
+            .setSubject(email)
             .setIssuedAt(new Date())
             //24h
             .setExpiration(new Date(System.currentTimeMillis() + 24 * 3600 * 100))

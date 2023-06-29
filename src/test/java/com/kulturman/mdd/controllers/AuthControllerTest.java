@@ -20,8 +20,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@DBRider
 @AutoConfigureMockMvc
+@DBRider
 @DBUnit(caseSensitiveTableNames = true)
 @DataSet(value = "data/users.json")
 class AuthControllerTest {
