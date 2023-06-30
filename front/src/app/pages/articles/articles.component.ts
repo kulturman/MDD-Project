@@ -11,7 +11,7 @@ import {Article} from "../../models/article";
 export class ArticlesComponent implements OnInit {
   isLoading = false;
   articles: Article[] = [];
-  sortOrder: SortOrder = 'ASC';
+  sortOrder: SortOrder = 'DESC';
 
   constructor(private readonly router: Router, private readonly articleService: ArticleService) {
   }
