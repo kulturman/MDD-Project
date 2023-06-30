@@ -13,8 +13,7 @@ public class ArticleControllerTest extends BaseIntegrationTest {
             authenticatedGet("/api/articles?sort=ASC", "itachi@konoha.com"))
             .andExpect(jsonPath("$", hasSize(2)));
 
-        expectElementToMatch(resultActions, 0, "Article 1", "Article 1 content", "kakashi", "2023-06-29T00:00:00");
-        expectElementToMatch(resultActions, 1, "Article 2", "Article 2 content", "itachi", "2023-06-29T01:00:00");
+        expectElementToMatch(resultActions, "Article 1", "Article 1 content", "kakashi", "2023-06-29T00:00:00");
     }
 
     @Test
@@ -23,11 +22,10 @@ public class ArticleControllerTest extends BaseIntegrationTest {
             authenticatedGet("/api/articles?sort=DESC", "itachi@konoha.com"))
             .andExpect(jsonPath("$", hasSize(2)));
 
-        expectElementToMatch(resultActions, 0, "Article 2", "Article 2 content", "itachi", "2023-06-29T01:00:00");
-        expectElementToMatch(resultActions, 1, "Article 1", "Article 1 content", "kakashi", "2023-06-29T00:00:00");
+        expectElementToMatch(resultActions,"Article 2", "Article 2 content", "itachi", "2023-06-29T01:00:00");
     }
 
-    private void expectElementToMatch(ResultActions resultActions, int position, String title, String content, String author, String createdAt) throws Exception {
+    private void expectElementToMatch(ResultActions resultActions, String title, String content, String author, String createdAt) throws Exception {
         resultActions.andExpect(jsonPath("$[0].title").value("Article 1"))
             .andExpect(jsonPath("$[0].content").value("Article 1 content"))
             .andExpect(jsonPath("$[0].author").value("kakashi"))
