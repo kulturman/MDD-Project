@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -7,10 +7,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./navigation-arrow.component.css']
 })
 export class NavigationArrowComponent {
+  @Input() redirectTo: string = '';
   constructor(private readonly router: Router) {
   }
 
   async navigate() {
-    await this.router.navigate(['']);
+    await this.router.navigate([this.redirectTo]);
   }
 }

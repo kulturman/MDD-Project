@@ -6,7 +6,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-public class ArticleControllerTest extends BaseIntegrationTest {
+class ArticleControllerTest extends BaseIntegrationTest {
     @Test
     void getAllArticlesAsc() throws Exception {
         var resultActions = mockMvc.perform(

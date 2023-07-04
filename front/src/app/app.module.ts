@@ -22,6 +22,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {AuthInterceptor} from "./auth.interceptor";
+import { NewArticleComponent } from './pages/new-article/new-article.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {AuthInterceptor} from "./auth.interceptor";
     ArticleComponent,
     ThemesComponent,
     ThemeComponent,
+    NewArticleComponent,
   ],
   imports: [
     BrowserModule,

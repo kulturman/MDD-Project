@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Theme} from "../../models/theme";
 
 @Component({
   selector: 'app-theme',
@@ -6,6 +7,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./theme.component.css']
 })
 export class ThemeComponent {
-  @Input() title!: string;
-  @Input() content!: string;
+  @Input() theme!: Theme;
 }
