@@ -32,7 +32,14 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.formGroup.value).subscribe(() => {
       this.successDialog.fire();
       this.router.navigate(['/login']);
+    }, ({error}) => {
+      if (error.errors) {
+        for (const errorElement of error.errors) {
+          this.formGroup.get(errorElement.field)?.setErrors({[errorElement.error]: ""});
+        }
+      }
     });
   }
 
+  protected readonly console = console;
 }

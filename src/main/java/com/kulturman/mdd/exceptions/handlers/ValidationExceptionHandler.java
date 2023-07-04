@@ -17,12 +17,13 @@ public class ValidationExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<CustomErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
         // Get all validation errors
-        List<String> errors = new ArrayList<>();
+        List<Error> errors = new ArrayList<>();
+
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
-            errors.add(fieldError.getDefaultMessage());
+            errors.add(new Error(fieldError.getField(), fieldError.getCode()));
         }
         for (ObjectError globalError : ex.getBindingResult().getGlobalErrors()) {
-            errors.add(globalError.getDefaultMessage());
+            errors.add(new Error("global", globalError.getDefaultMessage()));
         }
         // Create custom error response
         CustomErrorResponse response = new CustomErrorResponse();

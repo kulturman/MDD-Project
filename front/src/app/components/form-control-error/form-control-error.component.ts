@@ -14,7 +14,8 @@ export class FormControlErrorComponent {
   private messages = {
     'required' : 'Ce champ est obligatoire',
     'email' : 'L\'adresse email est invalide',
-    'pattern': 'Le champ est invalide'
+    'pattern': 'Le champ est invalide',
+    'UniqueField': 'Cette valeur est déjà utilisée'
   };
 
   getMessage(errors: ValidationErrors | null | undefined): string {
@@ -23,7 +24,7 @@ export class FormControlErrorComponent {
         return this.getMessageText(error as keyof typeof this.messages);
       }
     }
-    throw new Error('Unknown error');
+    throw new Error(`Unknown error`);
   }
 
   private getMessageText(key: keyof typeof this.messages): string {
