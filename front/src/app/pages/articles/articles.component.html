@@ -14,7 +14,7 @@
   <mat-spinner *ngIf="isLoading; else articlesTemplate"></mat-spinner>
   <ng-template  #articlesTemplate>
     <section class="articles">
-      <app-article *ngFor="let article of articles" [article]="article"></app-article>
+      <app-article class="article" *ngFor="let article of articles" [article]="article"></app-article>
     </section>
   </ng-template>
 </div>
