@@ -12,6 +12,20 @@ export class ArticleService {
   getAll(sortOrder: SortOrder): Observable<Article[]> {
     return this.http.get<Article[]>(`/api/articles?sort=${sortOrder}`);
   }
+
+  getById(id: number): Observable<Article> {
+    return new Observable<Article>(subscriber => {
+      subscriber.next({
+        title: "The title",
+        createdAt: "2023-06-29T01:00:00",
+        content: "A simple content",
+        id: 1,
+        author: "An author",
+        theme: "Theme bidon"
+      });
+    })
+    //return this.http.get<Article>(`/api/articles/${id}`);
+  }
 }
 
 export type SortOrder = 'DESC' | 'ASC';

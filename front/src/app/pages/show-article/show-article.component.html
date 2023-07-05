@@ -1,0 +1,36 @@
+<app-main-menu></app-main-menu>
+<div class="container">
+  <section class="article">
+    <div class="article__header">
+      <app-navigation-arrow redirectTo="/articles"></app-navigation-arrow>
+      <h1 class="title">{{article.title}}</h1>
+    </div>
+    <div class="articles__content">
+      <div class="article__metas">
+        <p class="article__meta">{{article.createdAt | date: 'd/M/Y HH:mm' }}</p>
+        <p class="article__meta">{{article.author}}</p>
+        <p class="article__meta">{{article.theme}}</p>
+      </div>
+      <p class="articles__content__content">
+        {{article.content}}
+      </p>
+    </div>
+  </section>
+  <hr>
+  <section class="comments">
+    <h1 class="comments__title">Commentaires</h1>
+    <div class="comments__comments">
+      <div class="comment" *ngFor="let comment of comments">
+        <p class="comment__content">
+          {{comment.comment}}
+        </p>
+        <p class="comment__author">{{comment.username}}</p>
+      </div>
+    </div>
+
+    <div class="new-comment">
+      <textarea [(ngModel)]="newComment" placeholder="Ecrivez ici votre commentaire" class="new-comment__textarea" name="comment" cols="30" rows="10"></textarea>
+      <img (click)="submitComment()" class="new-comment__send" src="assets/images/send.svg" alt="Send button">
+    </div>
+  </section>
+</div>

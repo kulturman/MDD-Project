@@ -2,6 +2,7 @@
   background: #F5F5F5;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  cursor: pointer;
 }
 
 .article__date-author {

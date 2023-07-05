@@ -12,7 +12,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
 import { NavigationArrowComponent } from './components/navigation-arrow/navigation-arrow.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FormControlErrorComponent } from './components/form-control-error/form-control-error.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
@@ -23,6 +23,7 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {AuthInterceptor} from "./auth.interceptor";
 import { NewArticleComponent } from './pages/new-article/new-article.component';
+import { ShowArticleComponent } from './pages/show-article/show-article.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NewArticleComponent } from './pages/new-article/new-article.component';
     ThemesComponent,
     ThemeComponent,
     NewArticleComponent,
+    ShowArticleComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { NewArticleComponent } from './pages/new-article/new-article.component';
     NgOptimizedImage,
     ReactiveFormsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    FormsModule
   ],
   providers: [
     {

@@ -6,6 +6,7 @@ import {RegisterComponent} from "./pages/register/register.component";
 import {ArticlesComponent} from "./pages/articles/articles.component";
 import {ThemesComponent} from "./pages/themes/themes.component";
 import {NewArticleComponent} from "./pages/new-article/new-article.component";
+import {ShowArticleComponent} from "./pages/show-article/show-article.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'article',
     component: NewArticleComponent
+  },
+  {
+    path: 'articles/:id',
+    component: ShowArticleComponent,
   },
   {
     path: 'themes',
