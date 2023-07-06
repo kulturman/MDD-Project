@@ -1,3 +1,24 @@
 .form-control {
   border: 2px solid #6C5CCF;
 }
+
+.form--new-article {
+  padding: 0;
+}
+
+.page__header {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .page__header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .page__header h1 {
+    margin-bottom: 0;
+  }
+}
+

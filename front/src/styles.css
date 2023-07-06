@@ -46,22 +46,17 @@ textarea.form-control {
   height: 35px;
 }
 
+.page-title {
+  font-weight: bold !important;
+  font-size: 1.7rem !important;
+}
+
 .center {
   text-align: center;
 }
 
 .logo-auth {
   width: 230px;
-}
-
-@media (min-width: 768px) {
-  .mobile-logo {
-    display: none;
-  }
-
-  .menu.main__menu {
-    display: block;
-  }
 }
 
 @media (min-width: 768px) {

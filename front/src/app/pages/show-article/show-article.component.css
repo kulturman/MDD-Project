@@ -87,7 +87,8 @@
   .comment {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: space-around;
+    align-items: center;
     gap: 2.5rem;
   }
 

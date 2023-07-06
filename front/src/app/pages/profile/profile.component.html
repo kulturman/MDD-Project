@@ -1,0 +1,59 @@
+<app-main-menu></app-main-menu>
+<section class="container">
+  <h1 class="page-title">Profil utilisateur</h1>
+
+  <form class="form form--profile">
+    <div class="form-group">
+      <input class="form-control" type="text">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="email">
+    </div>
+
+    <div class="center call-to-action">
+      <button type="submit" mat-raised-button color="primary">Sauvegardder</button>
+      <p (click)="logout()" class="call-to-action__logout">
+        Se déconnecter
+      </p>
+    </div>
+  </form>
+  <hr>
+</section>
+
+<section class="themes container">
+  <h1 class="themes__title center">Abonnements</h1>
+  <div class="themes__themes">
+    <div class="theme">
+      <p class="theme__title">Titre du thème</p>
+      <p class="theme__description">A description</p>
+
+      <div class="center">
+        <button type="button" mat-raised-button color="primary">Se désabonner</button>
+      </div>
+    </div>
+    <div class="theme">
+      <p class="theme__title">Titre du thème</p>
+      <p class="theme__description">A description</p>
+
+      <div class="center">
+        <button type="button" mat-raised-button color="primary">Se désabonner</button>
+      </div>
+    </div>
+    <div class="theme">
+      <p class="theme__title">Titre du thème</p>
+      <p class="theme__description">A description</p>
+
+      <div class="center">
+        <button type="button" mat-raised-button color="primary">Se désabonner</button>
+      </div>
+    </div>
+    <div class="theme">
+      <p class="theme__title">Titre du thème</p>
+      <p class="theme__description">A description</p>
+
+      <div class="center">
+        <button type="button" mat-raised-button color="primary">Se désabonner</button>
+      </div>
+    </div>
+  </div>
+</section>

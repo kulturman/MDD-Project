@@ -1,7 +1,12 @@
 <app-main-menu></app-main-menu>
-<app-navigation-arrow redirectTo="/articles"></app-navigation-arrow>
-<div class="container">
-  <form (ngSubmit)="onSubmit()" class="form" [formGroup]="formGroup">
+
+<div class="page__header">
+  <app-navigation-arrow redirectTo="/articles"></app-navigation-arrow>
+  <h1 class="page-title center">Créer un nouvel article</h1>
+</div>
+
+<section class="container">
+  <form (ngSubmit)="onSubmit()" class="form form--new-article" [formGroup]="formGroup">
     <div class="form-group">
       <select formControlName="theme" name="theme" id="theme" class="form-control">
         <option value="">Sélectionner un thème</option>
@@ -33,4 +38,4 @@
     >
     </swal>
   </form>
-</div>
+</section>

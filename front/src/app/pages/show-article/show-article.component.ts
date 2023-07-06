@@ -41,6 +41,11 @@ export class ShowArticleComponent implements OnInit {
   submitComment() {
     if (!this.newComment.trim()) {
       alert('Veuillez entrer un commentaire');
+      return;
     }
+    this.comments.unshift({
+      comment: this.newComment,
+      username: 'Arnaud'
+    });
   }
 }

@@ -7,6 +7,7 @@ import {ArticlesComponent} from "./pages/articles/articles.component";
 import {ThemesComponent} from "./pages/themes/themes.component";
 import {NewArticleComponent} from "./pages/new-article/new-article.component";
 import {ShowArticleComponent} from "./pages/show-article/show-article.component";
+import {ProfileComponent} from "./pages/profile/profile.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'themes',
     component: ThemesComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 
