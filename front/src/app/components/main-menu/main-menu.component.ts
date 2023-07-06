@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-menu',
@@ -11,14 +11,19 @@ export class MainMenuComponent implements OnInit {
   isAuthenticated: boolean = false;
   showDropdown = false;
   currentRoute!: string;
+  showBackdrop = false;
 
-  constructor(public authService: AuthService, private router: ActivatedRoute) {
+  constructor(
+    public authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
 
   }
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.getAuthToken() !== null;
-    this.currentRoute = this.router.snapshot.url[0].path;
+    this.currentRoute = this.activatedRoute.snapshot.url[0].path;
   }
 
   toggleDropdown(isVisible: boolean) {
@@ -27,5 +32,17 @@ export class MainMenuComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  navigate(url: string) {
+    this.router.navigate([url]);
+  }
+
+  onToggleButtonClick() {
+    this.showBackdrop = true;
+  }
+
+  closeBackdrop() {
+    this.showBackdrop = false;
   }
 }
