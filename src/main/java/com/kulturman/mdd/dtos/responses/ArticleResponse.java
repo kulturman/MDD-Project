@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record ArticleResponse(
-    String title, String content,
+    long id, String title, String content,
     String author, LocalDateTime createdAt
     ) {
 
     public static List<ArticleResponse> mapFromEntities(List<Article> articles) {
         return articles.stream().map(article -> new ArticleResponse(
+            article.getId(),
             article.getTitle(),
             article.getContent(),
             article.getAuthor().username(),
