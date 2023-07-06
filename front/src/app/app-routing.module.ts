@@ -8,6 +8,7 @@ import {ThemesComponent} from "./pages/themes/themes.component";
 import {NewArticleComponent} from "./pages/new-article/new-article.component";
 import {ShowArticleComponent} from "./pages/show-article/show-article.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {canActivate} from "./auth.guard";
 
 const routes: Routes = [
   {
@@ -24,23 +25,28 @@ const routes: Routes = [
   },
   {
     path: 'articles',
-    component: ArticlesComponent
+    component: ArticlesComponent,
+    canActivate: [canActivate]
   },
   {
     path: 'article',
-    component: NewArticleComponent
+    component: NewArticleComponent,
+    canActivate: [canActivate]
   },
   {
     path: 'articles/:id',
     component: ShowArticleComponent,
+    canActivate: [canActivate]
   },
   {
     path: 'themes',
-    component: ThemesComponent
+    component: ThemesComponent,
+    canActivate: [canActivate]
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [canActivate]
   }
 ];
 

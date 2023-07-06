@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {RegisterDto} from "../models/register.dto";
 import {LoginDto} from "../models/login.dto";
 import {LoginResponse} from "../models/login.response";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
     token: null
   };
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private router: Router) { }
 
   register(registerDto: RegisterDto) {
     return this.http.post(`${this.baseUrl}/register`, registerDto);
@@ -39,6 +40,13 @@ export class AuthService {
     this.authState.isAuthenticated = false;
     this.authState.token = null;
     localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  canActivate(): boolean {
+    if (!this.authState.isAuthenticated) {
+      this.router.navigate(['/login']);
+    }
+    return true;
   }
 }
 
