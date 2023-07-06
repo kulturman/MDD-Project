@@ -5,10 +5,10 @@
   <nav class="menu__nav" *ngIf="isAuthenticated">
     <ul class="menu__nave__list">
       <li>
-        <a routerLink="/articles">Articles</a>
+        <a [class.active]="currentRoute=='articles'" routerLink="/articles">Articles</a>
       </li>
       <li>
-        <a routerLink="/themes" class="active">Thèmes</a>
+        <a [class.active]="currentRoute=='themes'" routerLink="/themes">Thèmes</a>
       </li>
     </ul>
     <div class="menu__user-icon" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
