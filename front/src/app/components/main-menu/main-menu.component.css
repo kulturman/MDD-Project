@@ -87,6 +87,11 @@
   cursor: pointer;
 }
 
+.main__menu {
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
 .mobile__user-icon {
   width: 48px;
   height: 48px;
@@ -99,6 +104,11 @@
 }
 
 @media (min-width: 770px) {
+  .main__menu {
+    justify-content: inherit;
+    padding: 0 0;
+  }
+
   .toggle-button {
     display: none;
   }
