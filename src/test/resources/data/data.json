@@ -28,5 +28,22 @@
       "created_at": "groovy:new Date(1688000400000)",
       "author_id": 2
     }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "name": "Theme 1",
+      "description": "Desc T1"
+    },
+    {
+      "id": 2,
+      "name": "Theme 2",
+      "description": "Desc T2"
+    },
+    {
+      "id": 3,
+      "name": "Theme 3",
+      "description": "Desc T3"
+    }
   ]
 }

@@ -27,5 +27,6 @@ export class NewArticleComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.formGroup.value)
   }
 }

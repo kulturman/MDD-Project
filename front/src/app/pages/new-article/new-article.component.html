@@ -11,7 +11,7 @@
       <select formControlName="theme" name="theme" id="theme" class="form-control">
         <option value="">Sélectionner un thème</option>
         <option *ngFor="let theme of themes" [value]="theme.id">
-          {{theme.label}}
+          {{theme.name}}
         </option>
       </select>
       <app-form-control-error [form]="formGroup" name="theme"></app-form-control-error>
