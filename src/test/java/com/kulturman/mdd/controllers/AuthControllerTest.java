@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DBRider
 @DBUnit(caseSensitiveTableNames = true)
-@DataSet(value = "data/users.json")
+@DataSet(value = "data/data.json")
 class AuthControllerTest {
     @Autowired
     MockMvc mockMvc;

@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @DBUnit(caseSensitiveTableNames = true)
 @DBRider
-@DataSet(value = "data/users.json")
+@DataSet(value = "data/data.json")
 @SpringBootTest
 @AutoConfigureMockMvc
 public class BaseIntegrationTest {
