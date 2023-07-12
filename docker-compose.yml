@@ -3,6 +3,8 @@ services:
   database:
     image: mysql:5.7-debian
     container_name: mdd-mysql
+    networks:
+      - mdd-network
     environment:
       - MYSQL_ROOT_PASSWORD=mdd
       - MYSQL_USER=mdd
@@ -12,5 +14,22 @@ services:
       - mdd-mysql-data:/var/lib/mysql
     ports:
       - "13031:3306"
+
+  pma:
+    container_name: mdd-pma
+    image: phpmyadmin:5.1
+    networks:
+      - mdd-network
+    environment:
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: mdd
+    depends_on:
+      - database
+    ports:
+      - 8990:80
 volumes:
   mdd-mysql-data:
+
+networks:
+  mdd-network:

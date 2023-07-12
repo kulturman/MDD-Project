@@ -8,7 +8,7 @@
 <section class="container">
   <form (ngSubmit)="onSubmit()" class="form form--new-article" [formGroup]="formGroup">
     <div class="form-group">
-      <select formControlName="theme" name="theme" id="theme" class="form-control">
+      <select formControlName="themeId" name="theme" id="theme" class="form-control">
         <option value="">Sélectionner un thème</option>
         <option *ngFor="let theme of themes" [value]="theme.id">
           {{theme.name}}

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Article} from "../models/article";
 import {Observable} from "rxjs";
+import {CreateArticle} from "../models/createArticle";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class ArticleService {
       });
     })
     //return this.http.get<Article>(`/api/articles/${id}`);
+  }
+
+  save(articleToCreate: CreateArticle) {
+    return this.http.post('/api/articles', articleToCreate);
   }
 }
 

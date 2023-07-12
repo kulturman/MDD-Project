@@ -25,6 +25,10 @@ public class Article {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private User author;
 
+    @ManyToOne
+    @JoinColumn(name = "theme_id", referencedColumnName = "id")
+    private Theme theme;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 }

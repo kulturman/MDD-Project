@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ThemeService} from "../../services/theme.service";
 import {Theme} from "../../models/theme";
+import {ArticleService} from "../../services/article.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-article',
@@ -12,11 +14,16 @@ export class NewArticleComponent implements OnInit {
   formGroup!: FormGroup;
   themes: Theme[] = [];
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly themeService: ThemeService) {
+  constructor(
+    private readonly router: Router,
+    private readonly articleService: ArticleService,
+    private readonly formBuilder: FormBuilder,
+    private readonly themeService: ThemeService
+  ) {
   }
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      theme: ['', Validators.required],
+      themeId: ['', Validators.required],
       title: ['', Validators.required],
       content: ['', Validators.required],
     });
@@ -27,6 +34,9 @@ export class NewArticleComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formGroup.value)
+    this.articleService.save(this.formGroup.value).subscribe({
+      next: () => this.router.navigate(['/articles']),
+      error: err => {}
+    });
   }
 }
