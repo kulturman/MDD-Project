@@ -26,6 +26,10 @@
   align-items: center;
 }
 
+.theme {
+  word-wrap: break-word;
+}
+
 @media (min-width: 768px) {
   .call-to-action {
     flex-direction: row;
