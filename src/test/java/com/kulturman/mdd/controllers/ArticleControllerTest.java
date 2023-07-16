@@ -10,8 +10,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 class ArticleControllerTest extends BaseIntegrationTest {
     @Autowired
@@ -47,6 +46,49 @@ class ArticleControllerTest extends BaseIntegrationTest {
         assertThat(article.getContent()).isEqualTo(articleToCreate.content());
         assertThat(article.getAuthor().getEmail()).isEqualTo("itachi@konoha.com");
         assertThat(article.getTheme().getId()).isEqualTo(articleToCreate.themeId());
+    }
+
+    @Test
+    void getArticle() throws Exception {
+        long articleToGetId = 1;
+
+        mockMvc.perform(authenticatedGet("/api/articles/" + articleToGetId))
+            .andExpect(status().isOk())
+            .andExpect(content().json("""
+            {
+                "id": 1,
+                "title": "Article 1",
+                "content": "Article 1 content",
+                "createdAt": "2023-06-29T00:00:00",
+                "theme": {
+                    "id": 1,
+                    "name": "Theme 1"
+                },
+                "author": {
+                    "id": 1,
+                    "username": "kakashi"
+                },
+                "comments": [
+                    {
+                        "id": 2,
+                        "content": "Comment 2",
+                        "author": {
+                            "id": 1,
+                            "username": "kakashi"
+                        }
+                    },
+                    {
+                        "id": 1,
+                        "content": "Comment 1",
+                        "author": {
+                            "id": 2,
+                            "username": "itachi"
+                        }
+                    }
+                ]
+            }
+
+            """));
     }
 
     private void expectElementToMatch(ResultActions resultActions, long id, String title, String content, String author, String createdAt) throws Exception {

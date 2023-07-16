@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../../models/article";
-import {Comment} from "../../models/comment";
+import {ShowArticle} from "../../models/showArticle";
 
 @Component({
   selector: 'app-show-article',
@@ -10,30 +9,26 @@ import {Comment} from "../../models/comment";
   styleUrls: ['./show-article.component.css']
 })
 export class ShowArticleComponent implements OnInit {
+  isLoading = false;
   articleId!: number;
-  article!: Article;
-  comments: Comment[] = [
-    {
-      username: "kulturman",
-      comment: "A comment"
-    },
-    {
-      username: "kulturman",
-      comment: "A comment"
-    }
-  ];
+  article!: ShowArticle;
   newComment: string = '';
 
   constructor(private activatedRoute: ActivatedRoute, private articleService: ArticleService) {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
+
     this.activatedRoute.params.subscribe(params => {
       this.articleId = +params['id'];
     });
 
     this.articleService.getById(this.articleId).subscribe({
-      next: article => this.article = article
+      next: article => {
+        this.article = article;
+        this.isLoading = false;
+      }
     });
 
   }
@@ -43,9 +38,5 @@ export class ShowArticleComponent implements OnInit {
       alert('Veuillez entrer un commentaire');
       return;
     }
-    this.comments.unshift({
-      comment: this.newComment,
-      username: 'Arnaud'
-    });
   }
 }

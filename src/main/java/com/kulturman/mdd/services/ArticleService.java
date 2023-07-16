@@ -1,8 +1,10 @@
 package com.kulturman.mdd.services;
 
 import com.kulturman.mdd.dtos.requests.CreateArticleRequest;
+import com.kulturman.mdd.dtos.responses.articles.getOne.GetOneArticleResponse;
 import com.kulturman.mdd.entities.Article;
 import com.kulturman.mdd.entities.User;
+import com.kulturman.mdd.exceptions.NotFoundException;
 import com.kulturman.mdd.repositories.ArticleRepository;
 import com.kulturman.mdd.repositories.ThemeRepository;
 import lombok.AllArgsConstructor;
@@ -32,5 +34,10 @@ public class ArticleService {
         article.setTheme(themeRepository.getReferenceById(createArticleRequest.themeId()));
         article.setAuthor((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         articleRepository.save(article);
+    }
+
+    public GetOneArticleResponse findOne(long id) {
+        var article = articleRepository.findById(id).orElseThrow(() -> new NotFoundException(""));
+        return new GetOneArticleResponse(article);
     }
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "articles")
@@ -28,6 +29,10 @@ public class Article {
     @ManyToOne
     @JoinColumn(name = "theme_id", referencedColumnName = "id")
     private Theme theme;
+
+    @OneToMany(mappedBy = "article")
+    @OrderBy("id ASC")
+    private List<Comment> comments;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

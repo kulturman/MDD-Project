@@ -39,6 +39,10 @@ public class BaseIntegrationTest {
         return get(url).header("Authorization", "Bearer " + jwtService.generateToken(email));
     }
 
+    public MockHttpServletRequestBuilder authenticatedGet(String url) {
+        return authenticatedGet(url, "itachi@konoha.com");
+    }
+
     public MockHttpServletRequestBuilder authenticatedPost(String url, String email) {
         return post(url)
             .header("Authorization", "Bearer " + jwtService.generateToken(email))

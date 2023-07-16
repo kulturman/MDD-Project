@@ -19,14 +19,16 @@
       "title": "Article 1",
       "content": "Article 1 content",
       "created_at": "groovy:new Date(1687996800000)",
-      "author_id": 1
+      "author_id": 1,
+      "theme_id": 1
     },
     {
       "id": 2,
       "title": "Article 2",
       "content": "Article 2 content",
       "created_at": "groovy:new Date(1688000400000)",
-      "author_id": 2
+      "author_id": 2,
+      "theme_id": 2
     }
   ],
   "themes": [
@@ -44,6 +46,20 @@
       "id": 3,
       "name": "Theme 3",
       "description": "Desc T3"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "content": "Comment 1",
+      "author_id": 2,
+      "article_id": 1
+    },
+    {
+      "id": 2,
+      "content": "Comment 2",
+      "author_id": 1,
+      "article_id": 1
     }
   ]
 }
