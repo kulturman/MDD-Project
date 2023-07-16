@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +23,14 @@ public class User implements UserDetails {
 
     @Column(unique = true)
     private String username;
+
+    @ManyToMany
+    @JoinTable(
+        name = "subscriptions",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "theme_id")
+    )
+    private List<Theme> subscriptions;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

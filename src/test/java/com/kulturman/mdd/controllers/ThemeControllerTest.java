@@ -2,8 +2,6 @@ package com.kulturman.mdd.controllers;
 
 import com.kulturman.mdd.BaseIntegrationTest;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.web.servlet.ResultActions;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

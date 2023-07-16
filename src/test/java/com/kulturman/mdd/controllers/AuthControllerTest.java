@@ -1,38 +1,20 @@
 package com.kulturman.mdd.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.database.rider.core.api.configuration.DBUnit;
-import com.github.database.rider.core.api.dataset.DataSet;
-import com.github.database.rider.spring.api.DBRider;
+import com.kulturman.mdd.BaseIntegrationTest;
 import com.kulturman.mdd.dtos.requests.LoginRequest;
 import com.kulturman.mdd.dtos.requests.RegisterRequest;
 import com.kulturman.mdd.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@DBRider
-@DBUnit(caseSensitiveTableNames = true)
-@DataSet(value = "data/data.json")
-class AuthControllerTest {
-    @Autowired
-    MockMvc mockMvc;
-
+class AuthControllerTest extends BaseIntegrationTest {
     @Autowired
     UserService userService;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Test
     void registersSuccessfully() throws Exception {
@@ -90,5 +72,29 @@ class AuthControllerTest {
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(new LoginRequest("itachi@konoha.com2", "Aa123456@")))
         ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    void getUserProfile() throws Exception {
+        mockMvc.perform(authenticatedGet("/api/auth/me", "kakashi@konoha.com"))
+            .andExpect(status().isOk())
+            .andExpect(content().json("""
+                {
+                    username: "kakashi",
+                    email: "kakashi@konoha.com",
+                    subscriptions: [
+                        {
+                            id: 1,
+                            title: "Theme 1",
+                            description: "Desc T1"
+                        },
+                        {
+                            id: 2,
+                            title: "Theme 2",
+                            description: "Desc T2"
+                        }
+                    ]
+                }
+            """));
     }
 }

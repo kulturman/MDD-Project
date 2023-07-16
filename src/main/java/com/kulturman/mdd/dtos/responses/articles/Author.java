@@ -3,8 +3,8 @@ package com.kulturman.mdd.dtos.responses.articles;
 import com.kulturman.mdd.entities.User;
 
 public class Author {
-    public Long id;
-    public String username;
+    public final Long id;
+    public final String username;
 
     public Author(User user) {
         id = user.getId();

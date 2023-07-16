@@ -4,6 +4,8 @@ import {RegisterDto} from "../models/register.dto";
 import {LoginDto} from "../models/login.dto";
 import {LoginResponse} from "../models/login.response";
 import {Router} from "@angular/router";
+import {GetUserProfile} from "../models/get-user-profile";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,10 @@ export class AuthService {
     this.authState.isAuthenticated = false;
     this.authState.token = null;
     localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  getProfile(): Observable<GetUserProfile> {
+    return this.http.get<GetUserProfile>('/api/auth/me');
   }
 
   canActivate(): boolean {

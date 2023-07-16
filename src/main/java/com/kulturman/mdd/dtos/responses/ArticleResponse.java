@@ -4,7 +4,6 @@ import com.kulturman.mdd.entities.Article;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public record ArticleResponse(
     long id, String title, String content,
@@ -18,6 +17,6 @@ public record ArticleResponse(
             article.getContent(),
             article.getAuthor().username(),
             article.getCreatedAt()
-        )).collect(Collectors.toList());
+        )).toList();
     }
 }

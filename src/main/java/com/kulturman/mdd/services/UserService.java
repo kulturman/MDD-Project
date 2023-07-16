@@ -1,10 +1,13 @@
 package com.kulturman.mdd.services;
 
 import com.kulturman.mdd.dtos.requests.RegisterRequest;
+import com.kulturman.mdd.dtos.responses.auth.me.GetUserProfile;
 import com.kulturman.mdd.entities.User;
+import com.kulturman.mdd.exceptions.BadRequestException;
 import com.kulturman.mdd.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,5 +41,12 @@ public class UserService implements UserDetailsService {
 
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public GetUserProfile getUserProfile() {
+        var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return new GetUserProfile(
+            userRepository.getUserProfile(user.getId()).orElseThrow(() -> new BadRequestException("User not found"))
+        );
     }
 }

@@ -27,6 +27,8 @@ export class ShowArticleComponent implements OnInit {
     this.articleService.getById(this.articleId).subscribe({
       next: article => {
         this.article = article;
+      },
+      complete: () => {
         this.isLoading = false;
       }
     });

@@ -27,7 +27,8 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         String servletPath = request.getServletPath();
 
         if (
-            servletPath.contains("/auth") ||
+            servletPath.contains("/auth/register") ||
+            servletPath.contains("/auth/login") ||
             servletPath.contains("/h2")
         ) {
             filterChain.doFilter(request, response);

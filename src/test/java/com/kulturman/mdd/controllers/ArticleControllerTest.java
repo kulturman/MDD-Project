@@ -1,6 +1,5 @@
 package com.kulturman.mdd.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kulturman.mdd.BaseIntegrationTest;
 import com.kulturman.mdd.dtos.requests.CreateArticleRequest;
 import com.kulturman.mdd.repositories.ArticleRepository;
