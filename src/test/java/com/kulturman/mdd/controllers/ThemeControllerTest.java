@@ -1,11 +1,26 @@
 package com.kulturman.mdd.controllers;
 
 import com.kulturman.mdd.BaseIntegrationTest;
+import com.kulturman.mdd.repositories.ThemeRepository;
+import com.kulturman.mdd.services.UserService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class ThemeControllerTest extends BaseIntegrationTest {
+class ThemeControllerTest extends BaseIntegrationTest {
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    ThemeRepository themeRepository;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
     @Test
     void getAllThemes() throws Exception {
         mockMvc.perform(authenticatedGet("/api/themes", "itachi@konoha.com"))
@@ -32,4 +47,28 @@ public class ThemeControllerTest extends BaseIntegrationTest {
                 """)
             );
     }
+
+    @Test
+    void unsubscribe() throws Exception {
+        Long themeId = 2l;
+        Long userId = 2l;
+
+        mockMvc.perform(authenticatedPost(
+            String.format("/api/themes/%d/subscribe", themeId))
+        ).andExpect(status().isOk());
+
+        var query = String.format(
+            "SELECT * FROM subscriptions WHERE user_id = %d AND theme_id = %d",
+            userId, themeId
+        );
+
+        var result = jdbcTemplate.query(query, (rs, rowNum) -> new Subscription(rs.getLong("user_id"), rs.getLong("theme_id")));
+
+        assertThat(result.size()).isZero();
+    }
+}
+
+record Subscription(long userId, long themeId) {}
+interface SubscriptionRepository {
+    boolean subscriptionExists(long userId, long themeId);
 }

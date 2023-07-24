@@ -31,6 +31,8 @@ public class BaseIntegrationTest {
     @Autowired
     public ObjectMapper objectMapper;
 
+    String DEFAULT_USER = "itachi@konoha.com";
+
     public String getToken(String email) {
         return jwtService.generateToken(email);
     }
@@ -40,7 +42,11 @@ public class BaseIntegrationTest {
     }
 
     public MockHttpServletRequestBuilder authenticatedGet(String url) {
-        return authenticatedGet(url, "itachi@konoha.com");
+        return authenticatedGet(url, DEFAULT_USER);
+    }
+
+    public MockHttpServletRequestBuilder authenticatedPost(String url) {
+        return authenticatedPost(url, DEFAULT_USER);
     }
 
     public MockHttpServletRequestBuilder authenticatedPost(String url, String email) {
