@@ -25,6 +25,7 @@ import {AuthInterceptor} from "./auth.interceptor";
 import { NewArticleComponent } from './pages/new-article/new-article.component';
 import { ShowArticleComponent } from './pages/show-article/show-article.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     NewArticleComponent,
     ShowArticleComponent,
     ProfileComponent,
+    SubscriptionComponent,
   ],
   imports: [
     BrowserModule,

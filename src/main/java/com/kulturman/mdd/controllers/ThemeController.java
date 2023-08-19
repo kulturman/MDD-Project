@@ -19,9 +19,15 @@ public class ThemeController {
         return ResponseEntity.ok(themeService.getAll());
     }
 
-    @PostMapping("/{id}/subscribe")
+    @PostMapping("/{id}/unsubscribe")
     public ResponseEntity<?> unsubscribe(@PathVariable("id") long themeId) {
         themeService.unsubscribe(themeId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/subscribe")
+    public ResponseEntity<?> subscribe(@PathVariable("id") long themeId) {
+        themeService.subscribe(themeId);
         return ResponseEntity.ok().build();
     }
 }

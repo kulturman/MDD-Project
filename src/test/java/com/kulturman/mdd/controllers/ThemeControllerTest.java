@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -54,17 +56,36 @@ class ThemeControllerTest extends BaseIntegrationTest {
         Long userId = 2l;
 
         mockMvc.perform(authenticatedPost(
-            String.format("/api/themes/%d/subscribe", themeId))
+            String.format("/api/themes/%d/unsubscribe", themeId))
         ).andExpect(status().isOk());
 
+        List<Subscription> result = getSubscriptionList(themeId, userId);
+
+        assertThat(result.size()).isZero();
+    }
+
+    private List<Subscription> getSubscriptionList(Long themeId, Long userId) {
         var query = String.format(
             "SELECT * FROM subscriptions WHERE user_id = %d AND theme_id = %d",
             userId, themeId
         );
 
         var result = jdbcTemplate.query(query, (rs, rowNum) -> new Subscription(rs.getLong("user_id"), rs.getLong("theme_id")));
+        return result;
+    }
 
-        assertThat(result.size()).isZero();
+    @Test
+    void subscribe() throws Exception {
+        Long themeId = 1l;
+        Long userId = 2l;
+
+        mockMvc.perform(authenticatedPost(
+            String.format("/api/themes/%d/subscribe", themeId))
+        ).andExpect(status().isOk());
+
+        List<Subscription> result = getSubscriptionList(themeId, userId);
+
+        assertThat(result.size()).isEqualTo(1);
     }
 }
 

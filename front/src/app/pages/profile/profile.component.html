@@ -23,13 +23,6 @@
 <section class="themes container">
   <h1 class="themes__title center">Abonnements</h1>
   <div class="themes__themes">
-    <div class="theme" *ngFor="let subscription of profile.subscriptions">
-      <p class="theme__title">{{subscription.title}}</p>
-      <p class="theme__description">{{subscription.description}}</p>
-
-      <div class="center">
-        <button type="button" mat-raised-button color="primary">Se désabonner</button>
-      </div>
-    </div>
+    <app-subscription [subscription]="subscription" *ngFor="let subscription of profile?.subscriptions"></app-subscription>
   </div>
 </section>

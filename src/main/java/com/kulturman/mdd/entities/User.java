@@ -32,6 +32,10 @@ public class User implements UserDetails {
     )
     private List<Theme> subscriptions;
 
+    public void subscribe(Theme theme) {
+        subscriptions.add(theme);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

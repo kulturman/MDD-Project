@@ -2,7 +2,6 @@ package com.kulturman.mdd.dtos.responses.auth.me;
 
 import com.kulturman.mdd.entities.User;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class GetUserProfile {
