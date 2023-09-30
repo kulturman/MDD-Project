@@ -45,6 +45,7 @@ public class UserService implements UserDetailsService {
 
     public GetUserProfile getUserProfile() {
         var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         return new GetUserProfile(
             userRepository.getUserProfile(user.getId()).orElseThrow(() -> new BadRequestException("User not found"))
         );

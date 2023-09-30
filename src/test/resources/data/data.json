@@ -66,6 +66,14 @@
     {
       "user_id": 2,
       "theme_id": 2
+    },
+    {
+      "user_id": 1,
+      "theme_id": 1
+    },
+    {
+      "user_id": 1,
+      "theme_id": 2
     }
   ]
 }
