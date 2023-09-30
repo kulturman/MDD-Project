@@ -36,12 +36,12 @@ class CommentControllerTest extends BaseIntegrationTest {
             objectMapper.readValue(result, CreatedResourceId.class).id()
         ).orElseThrow();
 
-        Assertions.assertTrue(commentMatches(comment, commentContent, userId, articleId));
+        commentMatches(comment, commentContent, userId, articleId);
     }
 
-    boolean commentMatches(Comment comment, String expectedText, long userId, long articleId) {
-        return comment.getArticle().getId() == articleId
-            && comment.getContent().equals(expectedText)
-            && comment.getAuthor().getId() == userId;
+    void commentMatches(Comment comment, String expectedText, long userId, long articleId) {
+        Assertions.assertEquals(articleId, comment.getArticle().getId());
+        Assertions.assertEquals(expectedText, comment.getContent());
+        Assertions.assertEquals(userId, comment.getAuthor().getId());
     }
 }
