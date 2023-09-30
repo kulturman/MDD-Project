@@ -87,6 +87,21 @@ class ThemeControllerTest extends BaseIntegrationTest {
 
         assertThat(result.size()).isEqualTo(1);
     }
+
+    @Test
+    void dontDuplicateSubscriptionIfThereIsAlreadyOne() throws Exception {
+        Long themeId = 2l;
+        Long userId = 2l;
+
+        mockMvc.perform(authenticatedPost(
+            String.format("/api/themes/%d/subscribe", themeId))
+        ).andExpect(status().isBadRequest());
+
+        List<Subscription> result = getSubscriptionList(themeId, userId);
+
+        assertThat(result.size()).isEqualTo(1);
+    }
+
 }
 
 record Subscription(long userId, long themeId) {}
