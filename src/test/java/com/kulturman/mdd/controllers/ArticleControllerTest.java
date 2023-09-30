@@ -2,6 +2,7 @@ package com.kulturman.mdd.controllers;
 
 import com.kulturman.mdd.BaseIntegrationTest;
 import com.kulturman.mdd.dtos.requests.CreateArticleRequest;
+import com.kulturman.mdd.dtos.requests.CreateCommentRequest;
 import com.kulturman.mdd.repositories.ArticleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

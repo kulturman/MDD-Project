@@ -29,6 +29,14 @@
       "created_at": "groovy:new Date(1688000400000)",
       "author_id": 2,
       "theme_id": 2
+    },
+    {
+      "id": 3,
+      "title": "Article 3",
+      "content": "Article 3 content",
+      "created_at": "groovy:new Date(1688000400000)",
+      "author_id": 2,
+      "theme_id": 2
     }
   ],
   "themes": [
