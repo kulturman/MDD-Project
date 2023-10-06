@@ -13,10 +13,5 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    env: {
-      development: {
-        baseUrl: "http://localhost:4200"
-      }
-    }
   },
 });

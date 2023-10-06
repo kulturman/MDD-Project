@@ -1,6 +1,6 @@
 describe('login', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200/login');
+    cy.visit(Cypress.env('frontUrl') + "/login");
   })
 
   it('deactivates submit button if form is empty', () => {
