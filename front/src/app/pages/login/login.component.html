@@ -20,13 +20,15 @@
     </div>
 
     <div class="center">
-      <button [disabled]="formGroup.invalid" mat-raised-button color="primary">Se connecter</button>
+      <button data-cy="login-button" [disabled]="formGroup.invalid" mat-raised-button color="primary">Se connecter</button>
     </div>
 
     <swal
+      data-cy="error-dialog"
       #errorDialog
       text="Nom d'utilisateur/email ou mot de passe incorrect"
       icon="error"
+      customClass="error-dialog"
     >
     </swal>
   </form>
