@@ -27,7 +27,7 @@ class AuthControllerTest extends BaseIntegrationTest {
                 ))
         ).andExpect(status().isOk());
 
-        var user = userService.findByEmail("kulturman@gmail.com").orElseThrow();
+        var user = userService.findByEmailOrUsername("kulturman@gmail.com").orElseThrow();
         assertThat(user.getEmail()).isEqualTo("kulturman@gmail.com");
         assertThat(user.username()).isEqualTo("kulturman");
         assertThat(user.getPassword()).isNotNull();
@@ -58,10 +58,19 @@ class AuthControllerTest extends BaseIntegrationTest {
     }
 
     @Test
-    void authenticateSuccessfully() throws Exception {
+    void authenticateSuccessfullyWithEmail() throws Exception {
         mockMvc.perform(post("/api/auth/login")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(new LoginRequest("itachi@konoha.com", "Aa123456@")))
+        ).andExpect(status().isOk())
+            .andExpect(jsonPath("$.token").isString());
+    }
+
+    @Test
+    void authenticateSuccessfullyWithUsername() throws Exception {
+        mockMvc.perform(post("/api/auth/login")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(new LoginRequest("itachi", "Aa123456@")))
         ).andExpect(status().isOk())
             .andExpect(jsonPath("$.token").isString());
     }

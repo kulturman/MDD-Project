@@ -30,17 +30,17 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        var user = userRepository.findByEmail(email);
+        var user = userRepository.findByEmailOrUsername(email);
 
         if (user.isEmpty()) {
-            throw new UsernameNotFoundException(String.format("No user with email %s", email));
+            throw new UsernameNotFoundException(String.format("No user with email or username %s", email));
         }
 
         return user.get();
     }
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public Optional<User> findByEmailOrUsername(String email) {
+        return userRepository.findByEmailOrUsername(email);
     }
 
     public GetUserProfile getUserProfile() {
