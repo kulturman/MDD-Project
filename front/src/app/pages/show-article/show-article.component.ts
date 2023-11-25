@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import {ShowArticle} from "../../models/showArticle";
+import {CommentService} from "../../services/comment.service";
 
 @Component({
   selector: 'app-show-article',
@@ -14,7 +15,11 @@ export class ShowArticleComponent implements OnInit {
   article!: ShowArticle;
   newComment: string = '';
 
-  constructor(private activatedRoute: ActivatedRoute, private articleService: ArticleService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private articleService: ArticleService,
+    private commentService: CommentService
+  ) {
   }
 
   ngOnInit(): void {
@@ -40,5 +45,25 @@ export class ShowArticleComponent implements OnInit {
       alert('Veuillez entrer un commentaire');
       return;
     }
+
+    this.commentService.saveComment(this.articleId, this.newComment.trim()).subscribe({
+      next: result => {
+        this.article = {
+          ...this.article,
+          comments: [
+            ...this.article.comments,
+            {
+              id: result.id,
+              content: this.newComment.trim(),
+              author: {
+                id: result.userId,
+                username: result.username
+              }
+            }
+          ]
+        }
+        this.newComment = '';
+      }
+    });
   }
 }

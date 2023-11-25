@@ -2,6 +2,7 @@ package com.kulturman.mdd.controllers;
 
 import com.kulturman.mdd.dtos.requests.CreateCommentRequest;
 import com.kulturman.mdd.dtos.responses.CreatedResourceId;
+import com.kulturman.mdd.dtos.responses.comments.NewCommentResponse;
 import com.kulturman.mdd.services.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,13 +22,13 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/articles/{articleId}/comment")
-    public ResponseEntity<CreatedResourceId> comment(
+    public ResponseEntity<NewCommentResponse> comment(
         @PathVariable("articleId") long articleId,
         @Valid @RequestBody CreateCommentRequest createCommentRequest
         ) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-            new CreatedResourceId(commentService.createComment(articleId, createCommentRequest))
+            commentService.createComment(articleId, createCommentRequest)
         );
     }
 }
