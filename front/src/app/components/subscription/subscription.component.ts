@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Subscription} from "../../models/get-user-profile";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-subscription',
@@ -8,8 +10,22 @@ import {Subscription} from "../../models/get-user-profile";
 })
 export class SubscriptionComponent {
   @Input() subscription!: Subscription;
+  @Output()
+  onUnsubscription: EventEmitter<number>;
 
-  unsubscribe() {
-    alert(this.subscription.id);
+  constructor(
+    private snackbar: MatSnackBar,
+    private themeService: ThemeService
+  ) {
+    this.onUnsubscription = new EventEmitter<number>();
+  }
+
+  unsubscribe(themeId: number) {
+    this.themeService.unsubscribe(themeId).subscribe({
+      next: () => {
+        this.snackbar.open('Vous avez été désabonné', '', {duration: 2000});
+        this.onUnsubscription.emit(themeId);
+      }
+    })
   }
 }

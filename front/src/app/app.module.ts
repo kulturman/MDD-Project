@@ -26,6 +26,7 @@ import { NewArticleComponent } from './pages/new-article/new-article.component';
 import { ShowArticleComponent } from './pages/show-article/show-article.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+    MatSnackBarModule,
     MatProgressSpinnerModule,
     NgOptimizedImage,
     ReactiveFormsModule,

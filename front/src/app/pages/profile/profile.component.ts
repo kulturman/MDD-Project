@@ -39,4 +39,11 @@ export class ProfileComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['']);
   }
+
+  unsubscribe(themeId: number) {
+    this.profile = {
+      ...this.profile,
+      subscriptions: this.profile.subscriptions.filter(s => s.id !== themeId)
+    }
+  }
 }

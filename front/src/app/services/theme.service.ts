@@ -12,4 +12,12 @@ export class ThemeService {
   getAll(): Observable<Theme[]> {
     return this.http.get<Theme[]>('/api/themes');
   }
+
+  subscribe(themeId: number) {
+    return this.http.post(`/api/themes/${themeId}/subscribe`, {});
+  }
+
+  unsubscribe(themeId: number) {
+    return this.http.post(`/api/themes/${themeId}/unsubscribe`, {});
+  }
 }
