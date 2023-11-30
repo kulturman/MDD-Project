@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {GetUserProfile} from "../../models/get-user-profile";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SwalComponent} from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class ProfileComponent implements OnInit {
   profile!: GetUserProfile;
   formGroup!: FormGroup;
+  @ViewChild('swalDialog') swalDialog!: SwalComponent;
 
   constructor(
     private readonly authService: AuthService,
@@ -49,11 +51,16 @@ export class ProfileComponent implements OnInit {
 
   updateProfile() {
     this.authService.updateProfile(this.formGroup.value).subscribe({
-      next: () => {
-
+      next: async () => {
+        this.swalDialog.swalOptions.text = "Profil modifié avec succès";
+        await this.swalDialog.fire();
       },
-      error: (err) => {
-        console.log(err);
+      error: ({error}) => {
+        if (error.errors) {
+          for (const errorElement of error.errors) {
+            this.formGroup.get(errorElement.field)?.setErrors({[errorElement.error]: ""});
+          }
+        }
       }
     })
   }

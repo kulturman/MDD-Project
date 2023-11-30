@@ -5,17 +5,25 @@
   <form class="form form--profile" [formGroup]="formGroup">
     <div class="form-group">
       <input class="form-control" type="text" formControlName="username">
+      <app-form-control-error [form]="formGroup" name="username"></app-form-control-error>
     </div>
     <div class="form-group">
       <input class="form-control" type="email" formControlName="email">
+      <app-form-control-error [form]="formGroup" name="email"></app-form-control-error>
     </div>
 
     <div class="center call-to-action">
-      <button (click)="updateProfile()" [disabled]="formGroup.invalid" type="submit" mat-raised-button color="primary">Sauvegarder</button>
+      <button (click)="updateProfile()" type="submit" mat-raised-button color="primary">Sauvegarder</button>
       <p (click)="logout()" class="call-to-action__logout">
         Se déconnecter
       </p>
     </div>
+    <swal
+      #swalDialog
+      text="Profil modifié avec succès"
+      icon="success"
+    >
+    </swal>
   </form>
   <hr>
 </section>
