@@ -40,6 +40,4 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-
-  protected readonly console = console;
 }

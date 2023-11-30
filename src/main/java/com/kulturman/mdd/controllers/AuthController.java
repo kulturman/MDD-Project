@@ -2,6 +2,7 @@ package com.kulturman.mdd.controllers;
 
 import com.kulturman.mdd.dtos.requests.LoginRequest;
 import com.kulturman.mdd.dtos.requests.RegisterRequest;
+import com.kulturman.mdd.dtos.requests.UpdateProfileRequest;
 import com.kulturman.mdd.dtos.responses.LoginResponse;
 import com.kulturman.mdd.dtos.responses.auth.me.GetUserProfile;
 import com.kulturman.mdd.services.JwtService;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -43,4 +45,9 @@ public class AuthController {
         return ResponseEntity.ok(userService.getUserProfile());
     }
 
+    @PostMapping("me/update")
+    public ResponseEntity<?> updateProfile(@Valid @RequestBody UpdateProfileRequest updateProfileRequest) throws MethodArgumentNotValidException {
+        userService.updateProfile(updateProfileRequest);
+        return ResponseEntity.ok().build();
+    }
 }

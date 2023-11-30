@@ -1,10 +1,12 @@
 package com.kulturman.mdd.services;
 
 import com.kulturman.mdd.dtos.requests.RegisterRequest;
+import com.kulturman.mdd.dtos.requests.UpdateProfileRequest;
 import com.kulturman.mdd.dtos.responses.auth.me.GetUserProfile;
 import com.kulturman.mdd.entities.User;
 import com.kulturman.mdd.exceptions.BadRequestException;
 import com.kulturman.mdd.repositories.UserRepository;
+import com.kulturman.mdd.validation.ValidationHelper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+
 import java.util.Optional;
 
 @Service
@@ -49,5 +53,31 @@ public class UserService implements UserDetailsService {
         return new GetUserProfile(
             userRepository.getUserProfile(user.getId()).orElseThrow(() -> new BadRequestException("User not found"))
         );
+    }
+
+    public void updateProfile(UpdateProfileRequest updateProfileRequest) throws MethodArgumentNotValidException {
+        //Think about refactoring this later
+        var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ValidationHelper validationHelper = new ValidationHelper();
+
+        if (!userRepository.canCurrentUserUpdateToUsername(
+            updateProfileRequest.username(),
+            user.getId())) {
+            validationHelper.addError("username", "UniqueField");
+        }
+
+        if (!userRepository.canCurrentUserUpdateToEmail(
+            updateProfileRequest.email(),
+            user.getId())) {
+            validationHelper.addError("email", "UniqueField");
+        }
+
+        validationHelper.raiseException();
+
+        user.setEmail(updateProfileRequest.email());
+        user.setUsername(updateProfileRequest.username());
+
+        userRepository.save(user);
+
     }
 }

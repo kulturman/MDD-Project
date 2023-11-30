@@ -11,7 +11,7 @@
     </div>
 
     <div class="center call-to-action">
-      <button [disabled]="formGroup.invalid" type="submit" mat-raised-button color="primary">Sauvegarder</button>
+      <button (click)="updateProfile()" [disabled]="formGroup.invalid" type="submit" mat-raised-button color="primary">Sauvegarder</button>
       <p (click)="logout()" class="call-to-action__logout">
         Se déconnecter
       </p>

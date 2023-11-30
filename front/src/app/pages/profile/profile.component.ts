@@ -46,4 +46,8 @@ export class ProfileComponent implements OnInit {
       subscriptions: this.profile.subscriptions.filter(s => s.id !== themeId)
     }
   }
+
+  updateProfile() {
+    console.log(this.formGroup.value)
+  }
 }

@@ -3,6 +3,7 @@ package com.kulturman.mdd.controllers;
 import com.kulturman.mdd.BaseIntegrationTest;
 import com.kulturman.mdd.dtos.requests.LoginRequest;
 import com.kulturman.mdd.dtos.requests.RegisterRequest;
+import com.kulturman.mdd.dtos.requests.UpdateProfileRequest;
 import com.kulturman.mdd.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +106,32 @@ class AuthControllerTest extends BaseIntegrationTest {
                     ]
                 }
             """));
+    }
+
+    @Test
+    void updatingProfileFailsWhenUsernameOrEmailIsAlreadyUsed() throws Exception {
+        final var currentUserEmail = "itachi@konoha.com";
+
+        mockMvc.perform(
+            authenticatedPost("/api/auth/me/update", currentUserEmail)
+                .content(objectMapper.writeValueAsString(new UpdateProfileRequest("kakashi@konoha.com", "kakashi")))
+        ).andExpect(status().isBadRequest());
+
+        var updatedUser = userService.findByEmailOrUsername(currentUserEmail).orElseThrow();
+        assertThat(updatedUser.getUsername()).isEqualTo("itachi@konoha.com");
+    }
+
+    @Test
+    void updatesProfileSuccessfullyWhenUsernameAndEmailAreFree() throws Exception {
+        final var updateProfileRequest = new UpdateProfileRequest("sasuke@konoha.com", "sasuke");
+
+        mockMvc.perform(
+            authenticatedPost("/api/auth/me/update", "itachi@konoha.com")
+                .content(objectMapper.writeValueAsString(updateProfileRequest))
+        ).andExpect(status().isOk());
+
+        var updatedUser = userService.findByEmailOrUsername(updateProfileRequest.email()).orElseThrow();
+        assertThat(updatedUser.getEmail()).isEqualTo(updateProfileRequest.email());
+        assertThat(updatedUser.username()).isEqualTo(updateProfileRequest.username());
     }
 }
