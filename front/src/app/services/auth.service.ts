@@ -6,6 +6,7 @@ import {LoginResponse} from "../models/login.response";
 import {Router} from "@angular/router";
 import {GetUserProfile} from "../models/get-user-profile";
 import {Observable} from "rxjs";
+import {UpdateUserProfile} from "../models/update-user-profile";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,10 @@ export class AuthService {
     this.authState.isAuthenticated = true;
     this.authState.token = token;
     localStorage.setItem(this.TOKEN_KEY, token);
+  }
+
+  updateProfile(updateUserProfile: UpdateUserProfile) {
+    return this.http.post(`${this.baseUrl}/me/update`, updateUserProfile)
   }
 
   getAuthToken(): string | null {

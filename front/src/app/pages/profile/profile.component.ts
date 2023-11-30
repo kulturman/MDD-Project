@@ -48,6 +48,13 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    console.log(this.formGroup.value)
+    this.authService.updateProfile(this.formGroup.value).subscribe({
+      next: () => {
+
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

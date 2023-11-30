@@ -17,9 +17,10 @@ public class ValidationHelper {
         return new ValidationHelper();
     }
 
-    public ValidationHelper addError(String field, String errorType) {
-        bindingResult.addError(new FieldError(field, errorType, ""));
-        return this;
+    public void addError(String field, String errorType) {
+        String []errorTypes = {errorType};
+
+        bindingResult.addError(new FieldError("", field, errorType, false, errorTypes, null, errorType));
     }
 
     public void raiseException() throws MethodArgumentNotValidException {
