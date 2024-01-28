@@ -2,7 +2,6 @@ package com.kulturman.mdd.controllers;
 
 import com.kulturman.mdd.BaseIntegrationTest;
 import com.kulturman.mdd.dtos.requests.CreateArticleRequest;
-import com.kulturman.mdd.dtos.requests.CreateCommentRequest;
 import com.kulturman.mdd.repositories.ArticleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ class ArticleControllerTest extends BaseIntegrationTest {
     void getAllArticlesAsc() throws Exception {
         var resultActions = mockMvc.perform(
             authenticatedGet("/api/articles?sort=ASC", "itachi@konoha.com"))
-            .andExpect(jsonPath("$", hasSize(2)));
+            .andExpect(jsonPath("$", hasSize(3)));
 
         expectElementToMatch(resultActions, 1, "Article 1", "Article 1 content", "kakashi", "2023-06-29T00:00:00");
     }
@@ -28,9 +27,9 @@ class ArticleControllerTest extends BaseIntegrationTest {
     void getAllArticlesDesc() throws Exception {
         var resultActions = mockMvc.perform(
             authenticatedGet("/api/articles?sort=DESC", "itachi@konoha.com"))
-            .andExpect(jsonPath("$", hasSize(2)));
-
-        expectElementToMatch(resultActions,2, "Article 2", "Article 2 content", "itachi", "2023-06-29T01:00:00");
+            .andExpect(jsonPath("$", hasSize(3)));
+        System.out.println(resultActions);
+        expectElementToMatch(resultActions,3, "Article 3", "Article 3 content", "itachi", "2023-07-10T14:46:40");
     }
 
     @Test
@@ -92,10 +91,10 @@ class ArticleControllerTest extends BaseIntegrationTest {
     }
 
     private void expectElementToMatch(ResultActions resultActions, long id, String title, String content, String author, String createdAt) throws Exception {
-        resultActions.andExpect(jsonPath("$[0].title").value("Article 1"))
-            .andExpect(jsonPath("$[0].content").value("Article 1 content"))
-            .andExpect(jsonPath("$[0].author").value("kakashi"))
-            .andExpect(jsonPath("$[0].createdAt").value("2023-06-29T00:00:00"))
+        resultActions.andExpect(jsonPath("$[0].title").value(title))
+            .andExpect(jsonPath("$[0].content").value(content))
+            .andExpect(jsonPath("$[0].author").value(author))
+            .andExpect(jsonPath("$[0].createdAt").value(createdAt))
             .andExpect(jsonPath("$[0].id").value(id));
     }
 }

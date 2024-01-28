@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @DataSet(value = "data/data.json")
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BaseIntegrationTest {
+public class BaseIntegrationTest extends TestContainer {
 
     @Autowired
     public JwtService jwtService;
