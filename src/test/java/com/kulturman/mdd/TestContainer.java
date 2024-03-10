@@ -8,9 +8,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 public class TestContainer {
     public static MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:5.7")
-        .withDatabaseName("yelen")
-        .withPassword("yelen")
-        .withUsername("yelen");
+        .withDatabaseName("mdd")
+        .withPassword("mdd")
+        .withUsername("mdd");
 
     static {
         mySQLContainer.start();
