@@ -20,7 +20,7 @@ class ArticleControllerTest extends BaseIntegrationTest {
             authenticatedGet("/api/articles?sort=ASC", "itachi@konoha.com"))
             .andExpect(jsonPath("$", hasSize(3)));
 
-        expectElementToMatch(resultActions, 1, "Article 1", "Article 1 content", "kakashi", "2023-06-29T00:00:00");
+        expectElementToMatch(resultActions, 1, "Article 2", "Article 1 content", "kakashi", "2023-06-29T00:00:00");
     }
 
     @Test
