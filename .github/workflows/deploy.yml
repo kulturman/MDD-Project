@@ -27,7 +27,36 @@ jobs:
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u kulturman --password-stdin
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/kulturman/mdd-backend-${{ github.sha }} .
+        run: |
+          docker build -t ghcr.io/kulturman/mdd-backend:${{ github.sha }} .
+          docker build -t ghcr.io/kulturman/mdd-backend:latest .
 
       - name: Push Docker image
-        run: docker push ghcr.io/kulturman/mdd-backend-${{ github.sha }}
+        run: |
+          docker push ghcr.io/kulturman/mdd-backend:${{ github.sha }}
+          docker push ghcr.io/kulturman/mdd-backend:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+        - uses: actions/checkout@v4
+        - name: Copy docker-compose file to remote server
+          uses: appleboy/scp-action@master
+          with:
+            host: ${{ vars.REMOTE_HOST }}
+            username: ${{ vars.REMOTE_USER }}
+            password: ${{ secrets.REMOTE_PASSWORD }}
+            source: docker-compose-deploy.yml
+            target: /home/${{ vars.REMOTE_USER }}/mdd/docker-compose-deploy.yml
+
+        - name: Deploy to dev environment
+          uses: appleboy/ssh-action@v1.0.3
+          with:
+              host: ${{ vars.REMOTE_HOST }}
+              username: ${{ vars.REMOTE_USER }}
+              password: ${{ secrets.REMOTE_PASSWORD }}
+              script: |
+                cd mdd
+                echo COMMIT_SHA=${{ github.sha }} > .env
+                docker-compose -f docker-compose-deploy.yml up -d

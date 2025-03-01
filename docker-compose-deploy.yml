@@ -1,0 +1,27 @@
+services:
+  mdd-backend:
+    container_name: mdd-backend
+    image: ghcr.io/kulturman/mdd-backend:$COMMIT_SHA
+    environment:
+        - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/mdd
+        - SPRING_DATASOURCE_USERNAME=mdd
+        - SPRING_DATASOURCE_PASSWORD=mdd
+  database:
+    image: mysql:5.7-debian
+    container_name: mdd-mysql
+    networks:
+      - mdd-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=mdd
+      - MYSQL_USER=mdd
+      - MYSQL_PASSWORD=mdd
+      - MYSQL_DATABASE=mdd
+    volumes:
+      - mdd-mysql-data:/var/lib/mysql
+    ports:
+      - "13031:3306"
+volumes:
+  mdd-mysql-data:
+
+networks:
+  mdd-network:
