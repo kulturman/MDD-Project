@@ -6,6 +6,10 @@ services:
         - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/mdd
         - SPRING_DATASOURCE_USERNAME=mdd
         - SPRING_DATASOURCE_PASSWORD=mdd
+    networks:
+        - mdd-network
+    depends_on:
+      - database
   database:
     image: mysql:5.7-debian
     container_name: mdd-mysql
