@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+>
+
+  <changeSet id="001" author="kulturman">
+    <sql>
+              --
+        -- Table structure for table `articles`
+        --
+
+              DROP TABLE IF EXISTS `articles`;
+        /*!40101 SET @saved_cs_client     = @@character_set_client */;
+        /*!40101 SET character_set_client = utf8 */;
+              CREATE TABLE `articles` (
+                    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                    `content` varchar(255) DEFAULT NULL,
+                    `created_at` datetime DEFAULT NULL,
+                    `title` varchar(255) DEFAULT NULL,
+                    `author_id` bigint(20) DEFAULT NULL,
+                    `theme_id` bigint(20) DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    KEY `FKe02fs2ut6qqoabfhj325wcjul` (`author_id`),
+                    KEY `FKlml0ejjetiyeebfkn3cidwnob` (`theme_id`)
+              ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+        /*!40101 SET character_set_client = @saved_cs_client */;
+
+              --
+        -- Dumping data for table `articles`
+        --
+
+              LOCK TABLES `articles` WRITE;
+        /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+        /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
+        UNLOCK TABLES;
+
+        --
+        -- Table structure for table `comments`
+        --
+
+              DROP TABLE IF EXISTS `comments`;
+        /*!40101 SET @saved_cs_client     = @@character_set_client */;
+        /*!40101 SET character_set_client = utf8 */;
+              CREATE TABLE `comments` (
+                                        `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                        `content` varchar(255) DEFAULT NULL,
+                                        `article_id` bigint(20) DEFAULT NULL,
+                                        `author_id` bigint(20) DEFAULT NULL,
+                                        PRIMARY KEY (`id`),
+                                        KEY `FKk4ib6syde10dalk7r7xdl0m5p` (`article_id`),
+                                        KEY `FKn2na60ukhs76ibtpt9burkm27` (`author_id`)
+              ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+        /*!40101 SET character_set_client = @saved_cs_client */;
+
+              --
+        -- Dumping data for table `comments`
+        --
+
+              LOCK TABLES `comments` WRITE;
+        /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+        /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+        UNLOCK TABLES;
+
+        --
+        -- Table structure for table `subscriptions`
+        --
+
+              DROP TABLE IF EXISTS `subscriptions`;
+        /*!40101 SET @saved_cs_client     = @@character_set_client */;
+        /*!40101 SET character_set_client = utf8 */;
+              CREATE TABLE `subscriptions` (
+                                             `user_id` bigint(20) NOT NULL,
+                                             `theme_id` bigint(20) NOT NULL,
+                                             KEY `FK6xta1tpjwyg0lw9y5qymb8gly` (`theme_id`),
+                                             KEY `FKhro52ohfqfbay9774bev0qinr` (`user_id`)
+              ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+        /*!40101 SET character_set_client = @saved_cs_client */;
+
+              --
+        -- Dumping data for table `subscriptions`
+        --
+
+              LOCK TABLES `subscriptions` WRITE;
+        /*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
+        /*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
+        UNLOCK TABLES;
+
+        --
+        -- Table structure for table `themes`
+        --
+
+              DROP TABLE IF EXISTS `themes`;
+        /*!40101 SET @saved_cs_client     = @@character_set_client */;
+        /*!40101 SET character_set_client = utf8 */;
+              CREATE TABLE `themes` (
+                                      `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                      `description` varchar(255) DEFAULT NULL,
+                                      `name` varchar(255) DEFAULT NULL,
+                                      PRIMARY KEY (`id`)
+              ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+        /*!40101 SET character_set_client = @saved_cs_client */;
+
+              --
+        -- Dumping data for table `themes`
+        --
+
+              LOCK TABLES `themes` WRITE;
+        /*!40000 ALTER TABLE `themes` DISABLE KEYS */;
+        /*!40000 ALTER TABLE `themes` ENABLE KEYS */;
+        UNLOCK TABLES;
+
+        --
+        -- Table structure for table `users`
+        --
+
+              DROP TABLE IF EXISTS `users`;
+        /*!40101 SET @saved_cs_client     = @@character_set_client */;
+        /*!40101 SET character_set_client = utf8 */;
+              CREATE TABLE `users` (
+                                     `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                     `email` varchar(255) DEFAULT NULL,
+                                     `password` varchar(255) DEFAULT NULL,
+                                     `username` varchar(255) DEFAULT NULL,
+                                     PRIMARY KEY (`id`),
+                                     UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`),
+                                     UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`)
+              ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+        /*!40101 SET character_set_client = @saved_cs_client */;
+
+              --
+        -- Dumping data for table `users`
+        --
+
+              LOCK TABLES `users` WRITE;
+        /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+        /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+        UNLOCK TABLES;
+
+        INSERT INTO themes (name, description) VALUES ('Java', 'Java programming language');
+        INSERT INTO themes (name, description) VALUES ('Spring', 'Spring framework');
+        INSERT INTO themes (name, description) VALUES ('Hibernate', 'Hibernate ORM');
+        INSERT INTO themes (name, description) VALUES ('JPA', 'Java Persistence API');
+        INSERT INTO themes (name, description) VALUES ('SQL', 'Structured Query Language');
+        INSERT INTO themes (name, description) VALUES ('MySQL', 'MySQL database');
+        INSERT INTO themes (name, description) VALUES ('PostgreSQL', 'PostgreSQL database');
+        INSERT INTO themes (name, description) VALUES ('Liquibase', 'Liquibase database migration tool');
+    </sql>
+  </changeSet>
+</databaseChangeLog>
