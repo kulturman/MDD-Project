@@ -52,6 +52,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           script: |
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u gump-ci --password-stdin
             cd mdd
             echo COMMIT_SHA=${{ github.sha }} > .env
             docker-compose -f docker-compose-deploy.yml up -d
