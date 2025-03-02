@@ -10,6 +10,8 @@ services:
         - mdd-network
     depends_on:
       - database
+    ports:
+      - "3001:3001"
   database:
     image: mysql:5.7-debian
     container_name: mdd-mysql
