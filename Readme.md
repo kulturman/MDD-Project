@@ -6,6 +6,7 @@ This project was developed as part of the **OpenClassrooms Java Developer Pathwa
 
 ## **🌍 Live Demo**
 🔗 The application is deployed at: [mdd.kulturman.com](https://mdd.kulturman.com)
+You can connect with: 
 
 ---
 
